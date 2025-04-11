@@ -40,4 +40,4 @@
 
 * Engineered interactive visualizations using Seaborn and MatplotLib to reveal survival patterns.
 * Achieved 89% prediction accuracy through advanced feature engineering and model optimization.
-* Implemented deep learning model using TensorFlow and Keras.![Bike Study](/assets/img/bike_study.jpeg)
+* Implemented deep learning model using TensorFlow and Keras.
