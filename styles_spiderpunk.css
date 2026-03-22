@@ -1,0 +1,949 @@
+/* Spider-Punk Aesthetic Style */
+/* Inspired by Hobie Brown from Across the Spider-Verse */
+/* DIY Zine, Collage, 70s/80s London Punk, Chaotic, Halftone, Xerox */
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Creepster&display=swap');
+
+:root {
+    /* Chaotic punk palette */
+    --bg-main: #e2e2e2; /* Off-white / newsprint base */
+    --bg-dark: #121212;
+    --text-dark: #000000;
+    --text-light: #ffffff;
+
+    /* Flashing Neon Punk Colors */
+    --punk-pink: #ff007f;
+    --punk-cyan: #00ffff;
+    --punk-yellow: #ffff00;
+    --punk-green: #39ff14;
+    --punk-red: #ff0000;
+
+    /* Typography */
+    /* Mix of monospaced (typewriter), aggressive markers, and bold headlines */
+    --font-heading: 'Bebas Neue', 'Permanent Marker', cursive;
+    --font-marker: 'Permanent Marker', cursive;
+    --font-body: 'Space Mono', monospace;
+    --font-weird: 'Creepster', cursive;
+
+    /* Jittery Transitions */
+    --transition-glitch: 0.1s steps(2, end);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: crosshair; /* Aggressive cursor */
+}
+
+/* Base Body - Newsprint/Xerox feel */
+html, body {
+    /* Hide scrollbars for an app-like seamless aesthetic */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    line-height: 1.5;
+    overflow-x: hidden;
+    overflow-y: scroll; /* Maintains ability to scroll without showing the bar */
+    /* Halftone dot pattern background */
+    background-image: radial-gradient(var(--text-dark) 1px, transparent 1px);
+    background-size: 15px 15px;
+    background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.section {
+    padding: 8rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+/* Hide background effects from old layout */
+.background-effects { display: none; }
+
+/*
+ * -----------------------------------------
+ * HOBIE'S ZINE CUTOUT & GLITCH EFFECTS
+ * -----------------------------------------
+ */
+
+/* The "Magazine Cutout" look: jagged borders, sharp dropshadows, white outlines */
+.cutout {
+    background: #fff;
+    border: 3px solid #000;
+    box-shadow:
+        8px 8px 0px var(--text-dark),
+        -4px -4px 0px var(--punk-cyan),
+        12px 12px 0px var(--punk-pink);
+    clip-path: polygon(
+        2% 1%, 98% 3%, 100% 98%, 1% 99%, 0% 50%
+    );
+}
+
+/* Chaotic hover glitch */
+.glitch-hover:hover {
+    animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+    background-color: var(--punk-yellow);
+    color: #000;
+    mix-blend-mode: hard-light;
+}
+
+@keyframes glitch-skew {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(-10deg) translate(-5px, 5px); }
+  40% { transform: skew(10deg) translate(5px, -5px); filter: hue-rotate(90deg); }
+  60% { transform: skew(-5deg) scale(1.05); }
+  80% { transform: skew(5deg) scale(0.95); filter: hue-rotate(-90deg); }
+  100% { transform: skew(0deg); }
+}
+
+/* Sections Titles - Like torn paper / pasted zine headers */
+.section-title {
+    font-size: clamp(4rem, 10vw, 6rem);
+    display: inline-block;
+    background: var(--text-dark);
+    color: var(--bg-main);
+    padding: 0.5rem 1.5rem;
+    transform: rotate(-3deg);
+    position: relative;
+    margin-bottom: 4rem;
+    letter-spacing: 2px;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 100%;
+    height: 100%;
+    background: var(--punk-pink);
+    z-index: -1;
+    transform: rotate(2deg);
+    border: 3px solid #000;
+}
+
+.gradient-text {
+    /* Repurposing this class for a ransom-note style highlight */
+    background: var(--punk-yellow);
+    color: #000;
+    padding: 0 5px;
+    font-family: var(--font-marker);
+    font-size: 1.2em;
+    -webkit-text-fill-color: initial;
+    display: inline-block;
+    transform: translateY(-5px) rotate(4deg);
+}
+
+/* -----------------------------------------
+ * NAVIGATION - Punk Tape Style & Splash
+ * -----------------------------------------
+ */
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    z-index: 1000;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none; /* Let clicks pass through empty areas */
+}
+
+/* Background panel for the links */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    transition: all 0.3s;
+    pointer-events: auto;
+}
+
+.logo {
+    font-family: var(--font-marker);
+    font-size: 3rem;
+    color: var(--text-dark); /* Reverted to classic dark color */
+    transform: rotate(2deg);
+    position: fixed; /* Fix the logo to top left */
+    top: 20px;
+    left: 40px;
+    z-index: 1002;
+    background: #fff; /* Solid white background like a piece of tape */
+    padding: 0 10px; /* Space inside the tape */
+    border: 3px solid #000; /* Sharp comic border */
+    box-shadow: 4px 4px 0 var(--punk-cyan); /* Cool punk shadow */
+    display: inline-block;
+}
+
+/* Base Spider Logo Background (Invisible) - effectively removed */
+.logo::after {
+    display: none;
+}
+
+.logo .dot { color: var(--punk-pink); } /* Reverted to original pink dot */
+
+/* --- SPLATTERED STATE (When scrolling down) --- */
+/* Remove the splattered movement entirely, make it static in position */
+.navbar.splattered .logo {
+    top: 20px;
+    left: 40px;
+    transform: rotate(2deg) scale(1); /* Keep normal size and rotation */
+    box-shadow: 6px 6px 0 var(--punk-yellow); /* Change shadow color on scroll for fun */
+}
+
+.navbar.splattered .logo::after {
+    display: none;
+}
+
+/* The horizontal links wrapper */
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    background: var(--punk-cyan);
+    padding: 1rem 2rem;
+    border: 4px solid var(--text-dark);
+    box-shadow: 6px 6px 0 var(--text-dark);
+    transform: rotate(-1deg);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-left: auto; /* Push to right */
+}
+
+/* Hide horizontal links when scrolling completely */
+.navbar.hidden .nav-links {
+    transform: translateY(-20rem) rotate(5deg);
+    opacity: 0;
+}
+
+.nav-links a {
+    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    background: #fff;
+    color: #000;
+    padding: 0.2rem 1rem;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0 #000;
+    transition: var(--transition-glitch);
+}
+
+.nav-links a:hover {
+    background: var(--punk-pink);
+    color: #fff;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--punk-yellow);
+}
+
+/* -----------------------------------------
+ * FLOATING TAPE BUTTON
+ * -----------------------------------------
+ */
+.floating-nav-btn {
+    position: fixed;
+    top: 35px;
+    right: 5%;
+    width: 80px;
+    height: 45px;
+    background: rgba(255, 255, 0, 0.9); /* Yellow Tape Look */
+    border: none;
+    cursor: pointer;
+    z-index: 1002;
+    /* Only slide in from right when visible */
+    transform: translateX(200px) rotate(15deg);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 4px 4px 0 #000;
+    border-top: 2px dashed rgba(0,0,0,0.5);
+    border-bottom: 2px dashed rgba(0,0,0,0.5);
+}
+
+.floating-nav-btn::before {
+    content: 'MENU';
+    font-family: var(--font-marker);
+    color: #000;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.floating-nav-btn span { display: none; } /* Hide the hamburger bars */
+
+.floating-nav-btn.visible {
+    transform: translateX(0) rotate(-5deg);
+}
+
+.floating-nav-btn:hover {
+    background: var(--punk-cyan);
+    transform: scale(1.1) rotate(5deg);
+}
+
+.floating-nav-btn.open {
+    background: var(--punk-pink);
+    transform: scale(1.1) rotate(10deg);
+}
+.floating-nav-btn.open::before {
+    content: 'CLOSE';
+    color: #fff;
+}
+
+/* -----------------------------------------
+ * FLOATING WEB MENU
+ * -----------------------------------------
+ */
+.floating-menu {
+    position: fixed;
+    /* Slid right off the screen instead of above ceiling */
+    top: 90px;
+    right: -400px;
+    width: 250px;
+    height: auto;
+    padding: 3rem 2rem;
+    background: #000;
+    border: 5px solid #fff;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: -10px 10px 0 var(--punk-cyan);
+    transform: rotate(4deg);
+    /* No blur or filter that might cause fuzziness */
+}
+
+/* Eliminate Web Line Visual entirely */
+.spider-web-line {
+    display: none;
+}
+
+.floating-menu.active {
+    /* Slides in from the right */
+    right: calc(5% - 10px);
+}
+
+.floating-menu a {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #fff;
+    background: #000;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding: 0.2rem 1rem;
+    position: relative;
+    display: inline-block;
+    transition: var(--transition-glitch);
+    border: 2px solid #000;
+}
+
+.floating-menu a:nth-child(even) {
+    color: var(--punk-yellow);
+    transform: rotate(-3deg);
+}
+.floating-menu a:nth-child(odd) {
+    transform: rotate(2deg);
+}
+
+.floating-menu a:hover {
+    color: #fff;
+    background: var(--punk-pink);
+    transform: translateX(-10px) rotate(-5deg) scale(1.1);
+    border: 2px solid #fff;
+    box-shadow: 4px 4px 0 var(--punk-cyan);
+}
+
+/* -----------------------------------------
+ * HERO SECTION - Chaos & Anarchy
+ * -----------------------------------------
+ */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 150px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Giant rasterized background element */
+.hero::after {
+    content: 'X';
+    font-family: var(--font-marker);
+    position: absolute;
+    right: -5%;
+    top: 10%;
+    font-size: 80vw;
+    line-height: 0.5;
+    color: var(--punk-pink);
+    opacity: 0.4;
+    z-index: -1;
+    transform: rotate(15deg);
+    mix-blend-mode: multiply;
+}
+
+.greeting {
+    font-family: var(--font-marker);
+    font-size: 2rem;
+    color: var(--punk-red);
+    transform: rotate(-5deg);
+    margin-bottom: -1rem;
+    display: inline-block;
+    background: var(--punk-yellow);
+    padding: 0 10px;
+    border: 2px solid #000;
+}
+
+.name {
+    font-size: clamp(5rem, 12vw, 10rem);
+    line-height: 0.8;
+    color: #fff;
+    -webkit-text-stroke: 3px #000; /* Outline effect */
+    text-shadow:
+        5px 5px 0 var(--punk-cyan),
+        10px 10px 0 var(--punk-pink);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+.name .gradient-text {
+    /* Override for the last name */
+    color: #000;
+    -webkit-text-stroke: 0;
+    background: var(--punk-pink);
+    padding: 0 15px;
+    box-shadow: -5px 5px 0 var(--punk-cyan);
+    display: inline-block;
+}
+
+.role {
+    font-size: clamp(2rem, 5vw, 4rem);
+    background: #000;
+    color: var(--punk-yellow);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    transform: rotate(3deg);
+    border: 4px dashed #fff;
+    box-shadow: 10px 10px 0 var(--punk-pink);
+    margin-bottom: 3rem;
+}
+
+.summary {
+    font-size: 1.2rem;
+    font-weight: 700;
+    max-width: 600px;
+    background: #fff;
+    padding: 2rem;
+    border: 3px solid #000;
+    box-shadow: -8px 8px 0 var(--text-dark);
+    margin-bottom: 3rem;
+    position: relative;
+}
+/* Tape piece holding the summary */
+.summary::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 30%;
+    width: 100px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid #ccc;
+    transform: rotate(-10deg);
+}
+
+.contact-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--punk-cyan);
+    color: #000;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0 #000;
+    transition: 0.1s steps(2);
+    text-transform: uppercase;
+}
+
+.contact-pill:hover {
+    background: #000;
+    color: var(--punk-yellow);
+    box-shadow: 8px 8px 0 var(--punk-pink);
+    transform: translate(-4px, -4px) rotate(-2deg);
+}
+
+/* -----------------------------------------
+ * ABOUT SECTION - Shredded Zine
+ * -----------------------------------------
+ */
+.about {
+    background: var(--bg-dark);
+    color: #fff;
+    border-top: 15px solid var(--punk-pink);
+    border-bottom: 15px solid var(--punk-cyan);
+    transform: rotate(-1deg) scale(1.02);
+}
+
+.about .glass-card {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+}
+
+.about-text {
+    background: #000;
+    padding: 3rem;
+    border: 4px solid #fff;
+    box-shadow:
+        10px 10px 0 var(--punk-red),
+        20px 20px 0 var(--punk-cyan);
+}
+
+.about-text p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--punk-yellow);
+}
+
+.about-text strong {
+    background: var(--punk-pink);
+    color: #000;
+    padding: 0 5px;
+    font-family: var(--font-marker);
+}
+
+.stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.stat-item {
+    background: #fff;
+    color: #000;
+    border: 4px solid #000;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: -8px 8px 0 var(--punk-cyan);
+    transform: rotate(3deg);
+    transition: 0.1s steps(2);
+}
+.stat-item:nth-child(2) {
+    transform: rotate(-2deg) translateX(-20px);
+    box-shadow: 8px 8px 0 var(--punk-pink);
+}
+.stat-item:nth-child(3) {
+    transform: rotate(1deg) translateX(20px);
+    box-shadow: -8px 8px 0 var(--punk-yellow);
+}
+
+.stat-item:hover {
+    background: #000;
+    color: #fff;
+    border-color: var(--punk-yellow);
+}
+.stat-item:hover .stat-label { color: var(--punk-pink); }
+
+.stat-number {
+    font-size: 5rem;
+    font-family: var(--font-weird); /* Creepster font for weird punk vibes */
+    line-height: 1;
+}
+
+.stat-label {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--punk-red);
+}
+
+/* -----------------------------------------
+ * EXPERIENCE SECTION - Messy Tour Poster
+ * -----------------------------------------
+ */
+.experience {
+    background-color: var(--punk-yellow);
+    background-image: repeating-linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), repeating-linear-gradient(45deg, #000 25%, var(--punk-yellow) 25%, var(--punk-yellow) 75%, #000 75%, #000);
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+    border-top: 10px solid #000;
+}
+
+/* Make container background solid to read text over the crazy pattern */
+.experience .container > h2 {
+    background: #000;
+    color: var(--punk-cyan);
+    padding: 1rem 3rem;
+    transform: rotate(-2deg);
+    border: 4px solid #fff;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.timeline-item {
+    width: 100%;
+}
+
+.timeline-content {
+    background: #fff;
+    border: 5px solid #000;
+    padding: 3rem;
+    position: relative;
+    box-shadow:
+        15px 15px 0 #000,
+        -10px -10px 0 var(--punk-pink);
+}
+
+.timeline-content::before {
+    /* Safety pin graphic / rough box */
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 40px;
+    height: 40px;
+    background: var(--punk-cyan);
+    border: 3px solid #000;
+    border-radius: 50%;
+}
+
+.job-title {
+    font-size: 3rem;
+    background: #000;
+    color: #fff;
+    display: inline-block;
+    padding: 0 1rem;
+    transform: rotate(-1deg);
+    margin-bottom: 0.5rem;
+}
+
+.company {
+    font-family: var(--font-marker);
+    font-size: 2rem;
+    color: var(--punk-red);
+    margin-bottom: 1rem;
+}
+
+.timeline-meta {
+    background: var(--punk-pink);
+    color: #fff;
+    display: inline-flex;
+    gap: 1.5rem;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    border: 2px solid #000;
+    margin-bottom: 2rem;
+}
+
+.job-description li {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    list-style: none;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.job-description li::before {
+    content: 'X';
+    font-family: var(--font-marker);
+    color: var(--punk-red);
+    position: absolute;
+    left: 0;
+    top: -5px;
+    font-size: 1.5rem;
+}
+
+.tech-tags span {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    background: #000;
+    color: var(--punk-yellow);
+    padding: 0.2rem 0.8rem;
+    border: 2px solid var(--punk-yellow);
+    transform: rotate(calc(var(--r, 2) * 1deg));
+}
+.tech-tags span:nth-child(even) { --r: -2; background: var(--punk-cyan); color: #000; border-color: #000; }
+.tech-tags span:nth-child(3n) { --r: 3; background: var(--punk-pink); color: #fff; border-color: #000; }
+
+/* -----------------------------------------
+ * EDUCATION - Stencil Graffiti
+ * -----------------------------------------
+ */
+.education {
+    background: #000;
+    color: #fff;
+    border-top: 8px dashed var(--punk-pink);
+}
+
+.education .glass-card {
+    background: transparent;
+    border: 4px solid var(--punk-cyan);
+    padding: 3rem;
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(0,255,255,0.2);
+}
+
+.education .glass-card:hover {
+    background: rgba(0,255,255,0.1);
+    box-shadow:
+        0 0 15px var(--punk-cyan),
+        inset 0 0 20px var(--punk-cyan);
+}
+
+.degree {
+    font-size: 2.5rem;
+    color: var(--punk-yellow);
+}
+
+.school {
+    font-family: var(--font-marker);
+    font-size: 1.5rem;
+    color: var(--punk-pink);
+}
+
+.edu-details .badge {
+    background: #fff;
+    color: #000;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    padding: 0.2rem 1rem;
+    border: 3px solid var(--punk-pink);
+    display: inline-block;
+    transform: rotate(2deg);
+}
+
+/* -----------------------------------------
+ * SKILLS - Scrapbook
+ * -----------------------------------------
+ */
+.skills {
+    background: var(--bg-main);
+}
+
+.skills-category {
+    background: #fff;
+    border: 4px solid #000;
+    padding: 2rem;
+    box-shadow: 10px 10px 0 #000;
+    position: relative;
+}
+
+/* Tape over categories */
+.skills-category::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    width: 30%;
+    height: 30px;
+    background: rgba(255, 0, 127, 0.5); /* Pink tape */
+}
+
+.skills-category h3 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    background: #000;
+    color: #fff;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-bottom: 2rem;
+}
+
+.skill-badge {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    background: var(--bg-main);
+    color: #000;
+    border: 3px solid #000;
+    padding: 0.2rem 1rem;
+    border-radius: 50px; /* One weird rounded element for contrast */
+}
+
+.skill-badge:hover {
+    background: #000;
+    color: var(--punk-cyan);
+    box-shadow: 0 0 15px var(--punk-cyan);
+}
+
+/* -----------------------------------------
+ * LANGUAGES - Spray Paint & Stickers
+ * -----------------------------------------
+ */
+.languages-spoken {
+    padding: 4rem;
+    background: #000;
+    color: #fff;
+    border: 8px solid var(--punk-cyan);
+    margin: 8rem auto 4rem;
+    transform: rotate(2deg);
+    box-shadow: -15px 15px 0 var(--punk-pink);
+    max-width: 800px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Messy tape */
+.languages-spoken::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 40px;
+    background: rgba(255, 255, 0, 0.8); /* Yellow tape */
+    transform: rotate(15deg);
+    border: 2px solid #000;
+}
+
+.lang-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 4rem;
+    color: var(--punk-yellow);
+    font-family: var(--font-marker);
+    background: #000;
+    display: inline-block;
+    padding: 0 1rem;
+    border-bottom: 4px dashed var(--punk-pink);
+}
+
+.lang-flex {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.lang-item {
+    text-align: center;
+    background: #fff;
+    color: #000;
+    padding: 1.5rem 2.5rem;
+    border: 4px solid #000;
+    box-shadow: 6px 6px 0 var(--punk-cyan);
+    transform: rotate(calc(var(--rot, -3) * 1deg));
+    transition: var(--transition-glitch);
+}
+.lang-item:nth-child(even) {
+    --rot: 2;
+    box-shadow: -6px 6px 0 var(--punk-pink);
+}
+.lang-item:nth-child(3) {
+    --rot: -1;
+    box-shadow: 6px -6px 0 var(--punk-yellow);
+}
+
+.lang-item:hover {
+    background: var(--punk-pink);
+    color: #fff;
+    transform: scale(1.1) rotate(0deg);
+}
+
+.lang-name {
+    display: block;
+    font-size: 2rem;
+    font-family: var(--font-heading);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.lang-level {
+    font-size: 1.5rem;
+    font-family: var(--font-marker);
+    padding: 0.2rem 1rem;
+    background: #000;
+    color: var(--punk-yellow);
+    display: inline-block;
+    border: 2px solid var(--punk-yellow);
+}
+
+/* -----------------------------------------
+ * FOOTER - End of the Zine
+ * -----------------------------------------
+ */
+.footer {
+    background: var(--punk-pink);
+    border-top: 10px solid #000;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: var(--font-weird);
+    font-size: 5rem;
+    color: #000;
+    text-shadow: 3px 3px 0 #fff;
+}
+
+.footer-socials a {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    line-height: 70px;
+    font-size: 3rem;
+    background: #000;
+    color: var(--punk-yellow);
+    border: 4px solid #fff;
+    border-radius: 50%;
+    margin: 0 1rem;
+    transition: var(--transition-glitch);
+}
+
+.footer-socials a:hover {
+    background: var(--punk-cyan);
+    color: #000;
+    border-color: #000;
+    transform: scale(1.2) rotate(15deg);
+}
+
+.copyright {
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: #000;
+    margin-top: 2rem;
+    background: #fff;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid #000;
+}
